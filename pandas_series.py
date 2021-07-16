@@ -120,3 +120,4 @@ print(apple_1)
 #fruits[fruits.apply(vowel_counter) == fruits.apply(vowel_counter).max()]
 
 fruits[max(fruits.str.count(r'[aeiou]'))]
+
