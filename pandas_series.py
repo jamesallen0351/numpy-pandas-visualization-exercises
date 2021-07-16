@@ -73,3 +73,50 @@ print(counts.where(counts == min_count).dropna())
 # another way to answer #10 Determine the string value that occurs least frequently in fruits.
 least_frequent_fruit = fruits.value_counts().nsmallest(n = 1, keep = "all")
 print(least_frequent_fruit)
+
+### Exercises Part II
+### Explore more attributes and methods while you continue to work with the fruits Series.
+
+# 1 Capitalize all the string values in fruits.
+print(fruits.str.upper())
+
+# 2 Count the letter "a" in all the string values (use string vectorization).
+count_fruit = fruits.str.count('a').sum()
+print(count_fruit)
+
+# 3 Output the number of vowels in each and every string value.
+num_vowels = fruits.str.count(r'[aeiou]')
+print(num_vowels)
+
+# 4 Write the code to get the longest string value from fruits.
+fruit_length = fruits.str.len()
+fruit_length.max()
+
+#4 easier one liner
+fruit_length_1 = max(fruits.str.len())
+print(fruit_length_1)
+# max(fruits, key=len)
+
+# 5 Write the code to get the string values with 5 or more letters in the name.
+fruit_length_5 = fruit_length[fruit_length >= 5]
+print(fruit_length_5)
+
+# 6 Use the .apply method with a lambda function to find the fruit(s) containing the letter "o" two or more times.
+mask = fruits.apply(lambda n: n.count('o') >= 2)
+print(fruits[mask])
+
+# 7 Write the code to get only the string values containing the substring "berry".
+# mask = fruits.apply(lambda row: 'berry' in row)
+# fruits[mask]
+berry_mask = fruits.apply(lambda n: "berry" in n)
+print(fruits[berry_mask])
+
+# 8 Write the code to get only the string values containing the substring "apple".
+#print(data[data.str.contains("apple")])
+apple_1 = fruits[fruits.str.contains("apple")]
+print(apple_1)
+
+# 9 Which string value contains the most vowels?
+#fruits[fruits.apply(vowel_counter) == fruits.apply(vowel_counter).max()]
+
+fruits[max(fruits.str.count(r'[aeiou]'))]
